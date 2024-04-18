@@ -6,12 +6,10 @@ function dev() {
   const router = new Router();
   router.get('/1', (ctx, next) => {
     ctx.cookies.set('jimao', '1234');
-    console.log('哈哈');
     ctx.body = '哈哈';
   });
   router.get('/2', (ctx, next) => {
-    console.log('呼呼', ctx.cookies.get('jimao'));
-    ctx.body = '呼呼';
+    ctx.body = ctx.cookies.get('jimao') || '空';
   });
   app
     .use(router.routes())
